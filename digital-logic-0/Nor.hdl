@@ -1,0 +1,17 @@
+/**
+ * Nor gate: Starter Chip - use directly
+ * out = 1 if (a == 0 and b == 0)
+ *       0 otherwise
+ */
+
+CHIP Nor {
+    IN a, b;
+    OUT out;
+	
+    PARTS:
+
+	Nand(a=a,b=a,out=NotA);
+	Nand(a=b,b=b,out=NotB);
+	Nand(a=NotA,b=NotB,out=outAorB);
+	Nand(a=outAorB,b=outAorB,out=out);
+}

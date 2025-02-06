@@ -1,0 +1,18 @@
+CHIP PriorityEncoder83 {
+    IN a[8];
+    OUT out[3], idle;
+
+    PARTS:
+    Or8Way(in=a, out=anyActive);
+    Not(in=anyActive, out=idle);
+
+    Or(a=a[7], b=a[6], out=or76);
+    Or(a=a[5], b=a[4], out=or54);
+    Or(a=or76, b=or54, out=out[2]);
+    Or(a=a[7], b=a[6], out=upper76);
+    Or(a=a[3], b=a[2], out=lower32);
+    Or(a=upper76, b=lower32, out=out[1]);
+    Or(a=a[7], b=a[5], out=odd75);
+    Or(a=a[3], b=a[1], out=odd31);
+    Or(a=odd75, b=odd31, out=out[0]);
+}

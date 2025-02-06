@@ -1,0 +1,15 @@
+/**
+ * And gate: 
+ * out = 1 if (a == 1 and b == 1)
+ *       0 otherwise
+ */
+
+CHIP And {
+    IN a, b;
+    OUT out;
+
+    PARTS:
+    Not(in=a, out=notOutA);
+    Not(in=b, out=notOutB);
+    Nor(a=notOutA, b=notOutB, out=out);
+}
